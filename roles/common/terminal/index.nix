@@ -6,4 +6,8 @@
     zellij
     fish
   ];
+
+  home.file.".alacritty.yml" = {
+    source = ./alacritty/alacritty.yml;
+  };
 }
