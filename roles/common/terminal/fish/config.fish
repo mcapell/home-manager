@@ -27,6 +27,7 @@ export TERM="screen-256color"
 
 export NVM_DIR="$HOME/.nvm"
 export CGO_ENABLED=0
+export SHELL="/Users/marc/.nix-profile/bin/fish"
 
 # Tools
 alias m="tmuxinator"
