@@ -73,6 +73,7 @@ if ok then
 			-- null_ls.builtins.formatting.buf, -- profobuf, does not work (see: https://github.com/bufbuild/buf/issues/1035)
 			-- null_ls.builtins.formatting.rustfmt,
 			null_ls.builtins.formatting.prettier,
+			null_ls.builtins.diagnostics.vale,
 		},
 		on_attach = function(client, bufnr)
 			-- Format on save
