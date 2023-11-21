@@ -2,9 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    go
-    golangci-lint
-    delve
+    pkgs.unstable.go
+    pkgs.unstable.golangci-lint
+    pkgs.unstable.delve
   ];
 }
 
