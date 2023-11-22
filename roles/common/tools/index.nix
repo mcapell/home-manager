@@ -6,6 +6,7 @@
     jq
     gh
     difftastic
+    direnv
 
     # Containers
     skopeo

@@ -29,6 +29,9 @@ export NVM_DIR="$HOME/.nvm"
 export CGO_ENABLED=0
 export SHELL="/Users/marc/.nix-profile/bin/fish"
 
+# Enable direnv
+direnv hook fish | source
+
 # Tools
 alias m="tmuxinator"
 alias t="taskw"
