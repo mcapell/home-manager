@@ -11,6 +11,9 @@
     # Containers
     skopeo
     crane
+
+    # Documentation
+    plantuml
   ];
 }
 
