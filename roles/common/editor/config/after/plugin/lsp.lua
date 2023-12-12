@@ -8,6 +8,7 @@ lsp.ensure_installed({
 	"pyright",
 	"terraformls",
 	"golangci_lint_ls",
+	"clojure_lsp",
 })
 
 local cmp_sources = lsp.defaults.cmp_sources()
