@@ -7,6 +7,9 @@
 
     # bibtex, pdflatex, etc.
     texliveMedium 
+
+    # Static generation
+    hugo
   ];
 }
 
