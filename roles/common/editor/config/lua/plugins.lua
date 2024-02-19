@@ -41,6 +41,10 @@ return require("packer").startup(function()
 	use("jiangmiao/auto-pairs")
 	use("vim-test/vim-test")
 	use("lukas-reineke/indent-blankline.nvim")
+	use({
+		"andythigpen/nvim-coverage",
+		requires = "nvim-lua/plenary.nvim",
+	})
 
 	-- LSP and autocomplete
 	use({
