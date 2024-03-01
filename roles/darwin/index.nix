@@ -8,5 +8,6 @@
        ../common/writing/index.nix 
 
        ../common/golang/index.nix 
+       ../common/typescript/index.nix 
     ];
 }
