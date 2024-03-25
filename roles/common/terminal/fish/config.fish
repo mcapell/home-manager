@@ -21,7 +21,7 @@ export LC_ALL=C
 
 export EDITOR="nvim"
 export GOBIN="$HOME/.local/bin"
-export GOPRIVATE=github.com/docker
+export GOPRIVATE=github.com/docker,github.com/atomisthq,github.com/atomist-skills
 export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/opt/homebrew/bin:$GOBIN:$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$PATH"
 export TERM="screen-256color"
 
