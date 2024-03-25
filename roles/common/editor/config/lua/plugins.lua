@@ -71,7 +71,7 @@ return require("packer").startup(function()
 		},
 	})
 	use({
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		requires = "nvim-lua/plenary.nvim",
 	})
 	use("zbirenbaum/copilot.lua")
@@ -81,6 +81,7 @@ return require("packer").startup(function()
 		"rcarriga/nvim-dap-ui",
 		requires = {
 			{ "mfussenegger/nvim-dap" },
+			{ "nvim-neotest/nvim-nio" },
 
 			-- Languages
 			{ "leoluz/nvim-dap-go" },
