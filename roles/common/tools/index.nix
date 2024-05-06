@@ -11,6 +11,7 @@
     # Containers
     skopeo
     crane
+    vexctl
 
     # Documentation
     plantuml
