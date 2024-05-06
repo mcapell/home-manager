@@ -47,6 +47,7 @@ alias ll="ls -al"
 alias grep='grep --color=auto'
 alias ping='ping -c 5'
 alias rm='rm -i'
+alias wl="vim ~/.worklog"
 
 # Tools
 alias languagetool='docker run -d -p 8081:8010 --name languagetool --restart=unless-stopped erikvl87/languagetool'
