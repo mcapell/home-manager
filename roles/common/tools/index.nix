@@ -16,5 +16,10 @@
     # Documentation
     plantuml
   ];
+
+  home.file.".gitconfig" = {
+    source = ./git/gitconfig;
+  };
+
 }
 
