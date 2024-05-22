@@ -1,6 +1,6 @@
 require("copilot").setup({
 	panel = {
-		enabled = true,
+		enabled = false,
 		auto_refresh = false,
 		keymap = {
 			jump_prev = "[[",
@@ -15,8 +15,8 @@ require("copilot").setup({
 		},
 	},
 	suggestion = {
-		enabled = true,
-		auto_trigger = true,
+		enabled = false,
+		auto_trigger = false,
 		debounce = 75,
 		keymap = {
 			accept = "<C-l>",
@@ -41,22 +41,3 @@ require("copilot").setup({
 	copilot_node_command = "node", -- Node.js version must be > 16.x
 	server_opts_overrides = {},
 })
-
-require("copilot.command").disable()
-local CopilotStatus = false
-function ToggleCopilot()
-	if CopilotStatus then
-		CopilotStatus = false
-		require("copilot.command").disable()
-		print("copilot: disabled")
-		require("cmp").setup({ completion = { autocomplete = true } })
-	else
-		CopilotStatus = true
-		require("copilot.command").enable()
-		require("cmp").setup({ completion = { autocomplete = false } })
-		print("copilot: enabled")
-	end
-end
-
--- toggle copilot
-vim.api.nvim_set_keymap("n", "<leader>cp", ":lua ToggleCopilot()<CR>", { noremap = true, silent = true })

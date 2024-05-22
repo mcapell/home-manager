@@ -74,7 +74,14 @@ return require("packer").startup(function()
 		"nvimtools/none-ls.nvim",
 		requires = "nvim-lua/plenary.nvim",
 	})
-	use("zbirenbaum/copilot.lua")
+	use({ "zbirenbaum/copilot.lua" })
+	use({
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua" },
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	})
 
 	-- Debug
 	use({

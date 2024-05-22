@@ -121,6 +121,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
 	sources = {
+		{ name = "copilot" },
 		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
