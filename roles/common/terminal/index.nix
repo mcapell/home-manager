@@ -5,6 +5,7 @@
     alacritty
     zellij
     kitty
+    nerdfonts
   ];
 
   home.file.".alacritty.yml" = {
