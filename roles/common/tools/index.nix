@@ -7,6 +7,7 @@
     gh
     difftastic
     direnv
+    gnupg
 
     # Containers
     skopeo
