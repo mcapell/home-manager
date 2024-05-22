@@ -21,4 +21,9 @@
     source = ./kitty;
     recursive = true;
   };
+
+  xdg.configFile.zellij = {
+    source = ./zellij;
+    recursive = true;
+  };
 }

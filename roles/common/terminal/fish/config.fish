@@ -78,8 +78,6 @@ function fish_prompt
 end
 
 function fish_greeting
-    taskw
-
     set_color normal
 end
 
