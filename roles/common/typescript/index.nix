@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    pkgs.unstable.nodejs_21
+    pkgs.unstable.nodejs_22
   ];
 }
 
