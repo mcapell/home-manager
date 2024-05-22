@@ -1,25 +1,11 @@
-local lsp = require("lsp-zero")
+local lsp_zero = require("lsp-zero")
 
-lsp.preset("recommended")
-lsp.ensure_installed({
-	"rust_analyzer",
-	"gopls",
-	"tsserver",
-	"pyright",
-	"terraformls",
-	"golangci_lint_ls",
-	"clojure_lsp",
-})
+lsp_zero.on_attach(function(_, bufnr)
+	-- see :help lsp-zero-keybindings
+	-- to learn the available actions
+	lsp_zero.default_keymaps({ buffer = bufnr })
 
-local cmp_sources = lsp.defaults.cmp_sources()
-table.insert(cmp_sources, { name = "nvim_lsp_signature_help", keyword_length = 3 })
-lsp.setup_nvim_cmp({
-	sources = cmp_sources,
-})
-
-lsp.on_attach(function(_, bufnr)
 	local opts = { buffer = bufnr, remap = false }
-
 	-- LSP Commands
 	vim.keymap.set("n", "gs", function()
 		vim.lsp.buf.hover()
@@ -48,13 +34,40 @@ lsp.on_attach(function(_, bufnr)
 	vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", opts)
 end)
 
+-- technically these are "diagnostic signs"
+lsp_zero.set_sign_icons({
+	error = "✘",
+	warn = "▲",
+	hint = "⚑",
+	info = "»",
+})
+
+-- Virtual lines
 require("lsp_lines").setup({})
 vim.diagnostic.config({
 	virtual_text = false,
 })
 vim.diagnostic.config({ virtual_lines = { prefix = "" } })
 
-lsp.setup()
+require("mason").setup({})
+require("mason-lspconfig").setup({
+	-- Replace the language servers listed here
+	-- with the ones you want to install
+	ensure_installed = {
+		"rust_analyzer",
+		"gopls",
+		"tsserver",
+		"pyright",
+		"terraformls",
+		"golangci_lint_ls",
+		"clojure_lsp",
+	},
+	handlers = {
+		function(server_name)
+			require("lspconfig")[server_name].setup({})
+		end,
+	},
+})
 
 -- TODO: Find way to run formatters for LSP formatting (an alternative to null-ls)
 -- vim.api.nvim_create_augroup('AutoFormatting', {})
@@ -99,3 +112,44 @@ if ok then
 		end,
 	})
 end
+
+local cmp = require("cmp")
+
+-- this is the function that loads the extra snippets
+-- from rafamadriz/friendly-snippets
+require("luasnip.loaders.from_vscode").lazy_load()
+
+cmp.setup({
+	sources = {
+		{ name = "path" },
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "luasnip", keyword_length = 2 },
+		{ name = "buffer", keyword_length = 3 },
+	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
+	mapping = cmp.mapping.preset.insert({
+		-- confirm completion item
+		["<Enter>"] = cmp.mapping.confirm({ select = true }),
+
+		-- next item
+		["<Tab>"] = cmp.mapping.select_next_item(),
+
+		-- trigger completion menu
+		["<C-Space>"] = cmp.mapping.complete(),
+
+		-- scroll up and down the documentation window
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+	}),
+
+	formatting = lsp_zero.cmp_format({ details = true }),
+})

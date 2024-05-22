@@ -8,6 +8,7 @@
     difftastic
     direnv
     gnupg
+    ripgrep
 
     # Containers
     skopeo

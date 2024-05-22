@@ -3,6 +3,8 @@
 {
   home.packages = with pkgs; [
     neovim
+
+    stylua
   ];
 
   xdg.configFile.nvim = {
