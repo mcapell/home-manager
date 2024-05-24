@@ -9,6 +9,7 @@
     direnv
     gnupg
     ripgrep
+    jwt-cli
 
     # Containers
     skopeo
