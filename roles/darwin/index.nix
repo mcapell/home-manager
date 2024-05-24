@@ -9,5 +9,7 @@
 
        ../common/golang/index.nix 
        ../common/typescript/index.nix 
+
+       ../common/productivity/index.nix
     ];
 }
