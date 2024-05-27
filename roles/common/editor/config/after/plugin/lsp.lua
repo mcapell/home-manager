@@ -141,8 +141,9 @@ cmp.setup({
 		-- confirm completion item
 		["<Enter>"] = cmp.mapping.confirm({ select = true }),
 
-		-- next item
+		-- next/previous item
 		["<Tab>"] = cmp.mapping.select_next_item(),
+		["<S-Tab>"] = cmp.mapping.select_prev_item(),
 
 		-- trigger completion menu
 		["<C-Space>"] = cmp.mapping.complete(),
