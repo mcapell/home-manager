@@ -1,6 +1,11 @@
 { pkgs, services, ... }:
+
 {
-    services.syncthing = {
-        enable = true;
-    };
+  home.packages = with pkgs; [
+    pkgs.unstable.obsidian
+  ];
+
+  services.syncthing = {
+      enable = true;
+  };
 }

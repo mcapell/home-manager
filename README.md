@@ -18,5 +18,5 @@
 
 3. Download this repository, and run home manager:
    ```bash
-   home-manager switch
+   NIXPKGS_ALLOW_UNFREE="1" home-manager switch
    ```
