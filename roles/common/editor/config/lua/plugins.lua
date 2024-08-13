@@ -12,6 +12,7 @@ return require("packer").startup(function()
 
 	-- Theme
 	use("EdenEast/nightfox.nvim")
+	use("rebelot/kanagawa.nvim")
 
 	-- Productivity
 	use("tpope/vim-surround")

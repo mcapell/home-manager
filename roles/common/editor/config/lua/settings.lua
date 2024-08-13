@@ -1,7 +1,7 @@
 -- Colorscheme
 vim.o.termguicolors = true
 -- vim.cmd'colorscheme base16-apprentice'
-vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme kanagawa")
 vim.o.background = "dark"
 
 -- Numbers
