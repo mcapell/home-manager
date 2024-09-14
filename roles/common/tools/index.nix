@@ -10,6 +10,7 @@
     gnupg
     ripgrep
     jwt-cli
+    fzf
 
     # Containers
     skopeo
@@ -18,6 +19,9 @@
 
     # Documentation
     plantuml
+
+    # Cloud providers
+    awscli2
   ];
 
   home.file.".gitconfig" = {
