@@ -59,5 +59,5 @@ vim.cmd([[
 vim.o.exrc = true
 
 -- Enable spellcheck everywhere
-vim.opt_local.spell = true
-vim.opt_local.spelllang = "en_us"
+vim.o.spell = true
+vim.o.spelllang = "en_us"
