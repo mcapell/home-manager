@@ -83,6 +83,19 @@ return require("packer").startup(function()
 			require("copilot_cmp").setup()
 		end,
 	})
+    use({
+        "olimorris/codecompanion.nvim",
+        config = function()
+            require("codecompanion").setup()
+        end,
+        requires = {
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-treesitter/nvim-treesitter" },
+            -- { "hrsh7th/nvim-cmp" }, -- Optional: For using slash commands and variables in the chat buffer
+            -- { "stevearc/dressing.nvim" }, -- Optional: Improves the default Neovim UI
+            -- { "nvim-telescope/telescope.nvim" }, -- Optional: For using slash commands
+        }
+    })
 
 	-- Debug
 	use({

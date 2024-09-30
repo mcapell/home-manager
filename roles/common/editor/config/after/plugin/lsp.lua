@@ -56,7 +56,7 @@ require("mason-lspconfig").setup({
 	ensure_installed = {
 		"rust_analyzer",
 		"gopls",
-		"tsserver",
+		-- "tsserver",
 		"pyright",
 		"terraformls",
 		"golangci_lint_ls",
