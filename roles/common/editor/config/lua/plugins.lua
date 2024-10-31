@@ -1,134 +1,131 @@
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-local is_boostrap = false
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	is_boostrap = true
-	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-	vim.cmd([[packadd packer.nvim]])
-end
-
-return require("packer").startup(function()
-	use("wbthomason/packer.nvim")
-
-	-- Theme
-	use("EdenEast/nightfox.nvim")
-	use("rebelot/kanagawa.nvim")
-
-	-- Productivity
-	use("tpope/vim-surround")
-	use("vim-scripts/BufOnly.vim")
-	use({
-		"nvim-telescope/telescope.nvim",
-		requires = "nvim-lua/plenary.nvim",
-	})
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = "kyazdani42/nvim-web-devicons",
-	})
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	})
-	use({
-		"ThePrimeagen/harpoon",
-		requires = "nvim-lua/plenary.nvim",
-	})
-
-	-- General
-	use("tpope/vim-fugitive")
-	use("lewis6991/gitsigns.nvim")
-	use("knsh14/vim-github-link")
-	-- use("editorconfig/editorconfig-vim")
-	use("jiangmiao/auto-pairs")
-	use("vim-test/vim-test")
-	use("lukas-reineke/indent-blankline.nvim")
-	use({
-		"andythigpen/nvim-coverage",
-		requires = "nvim-lua/plenary.nvim",
-	})
-
-	-- LSP and autocomplete
-	use({
-		"VonHeikemen/lsp-zero.nvim",
-		requires = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
-
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" },
-			{ "hrsh7th/cmp-buffer" },
-			{ "hrsh7th/cmp-path" },
-			{ "saadparwaiz1/cmp_luasnip" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-nvim-lua" },
-			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
-			{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
-
-			-- Snippets
-			{ "L3MON4D3/LuaSnip" },
-			{ "rafamadriz/friendly-snippets" },
-		},
-	})
-	use({
-		"nvimtools/none-ls.nvim",
-		requires = "nvim-lua/plenary.nvim",
-	})
-	use({ "zbirenbaum/copilot.lua" })
-	use({
-		"zbirenbaum/copilot-cmp",
-		after = { "copilot.lua" },
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	})
-    use({
-        "olimorris/codecompanion.nvim",
-        config = function()
-            require("codecompanion").setup()
-        end,
-        requires = {
-            { "nvim-lua/plenary.nvim" },
-            { "nvim-treesitter/nvim-treesitter" },
-            -- { "hrsh7th/nvim-cmp" }, -- Optional: For using slash commands and variables in the chat buffer
-            -- { "stevearc/dressing.nvim" }, -- Optional: Improves the default Neovim UI
-            -- { "nvim-telescope/telescope.nvim" }, -- Optional: For using slash commands
-        }
-    })
-
-	-- Debug
-	use({
-		"rcarriga/nvim-dap-ui",
-		requires = {
-			{ "mfussenegger/nvim-dap" },
-			{ "nvim-neotest/nvim-nio" },
-
-			-- Languages
-			{ "leoluz/nvim-dap-go" },
-		},
-	})
-	use("mxsdev/nvim-dap-vscode-js", {
-		requires = {
-			{ "mfussenegger/nvim-dap" },
-		},
-	})
-
-	-- Go
-	use("ray-x/go.nvim", {
-		requires = {
-			{ "neovim/nvim-lspconfig" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-		run = ":GoUpdateBinaries",
-	})
-
-	-- Rust
-	use("simrat39/rust-tools.nvim")
-
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if is_bootstrap then
-		require("packer").sync()
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
 	end
-end)
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Setup lazy.nvim
+require("lazy").setup({
+	spec = {
+		-- Theme
+		{ "EdenEast/nightfox.nvim" },
+		{ "rebelot/kanagawa.nvim" },
+
+		-- Productivity plugins
+		{ "tpope/vim-surround" },
+		{ "vim-scripts/BufOnly.vim" },
+		{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+		{ "kyazdani42/nvim-tree.lua", dependencies = { "kyazdani42/nvim-web-devicons" } },
+		{
+			"nvim-treesitter/nvim-treesitter",
+			build = ":TSUpdate",
+			config = function()
+				-- use a custom path as the nix-created one is read-only
+				local parser_install_dir = vim.fn.stdpath("data") .. "/treesitter"
+				vim.opt.runtimepath:append(parser_install_dir)
+
+				require("nvim-treesitter.configs").setup({
+					parser_install_dir = parser_install_dir,
+					ensure_installed = { "go", "gomod", "python", "rust", "yaml", "hcl", "lua", "clojure" },
+					sync_install = false,
+					auto_install = true,
+					highlight = {
+						enable = true,
+						additional_vim_regex_highlighting = false,
+					},
+					-- indent = {
+					--     enable = true
+					-- },
+				})
+			end,
+		},
+		{ "ThePrimeagen/harpoon", dependencies = { "nvim-lua/plenary.nvim" } },
+
+		-- General plugins
+		{ "tpope/vim-fugitive" },
+		{ "lewis6991/gitsigns.nvim" },
+		{ "knsh14/vim-github-link" },
+		{ "jiangmiao/auto-pairs" },
+		{ "vim-test/vim-test" },
+		{ "lukas-reineke/indent-blankline.nvim" },
+		{ "andythigpen/nvim-coverage", dependencies = { "nvim-lua/plenary.nvim" } },
+
+		-- LSP and autocomplete plugins
+		{
+			"VonHeikemen/lsp-zero.nvim",
+			dependencies = {
+				{ "neovim/nvim-lspconfig" },
+				{ "williamboman/mason.nvim" },
+				{ "williamboman/mason-lspconfig.nvim" },
+				{ "hrsh7th/nvim-cmp" },
+				{ "hrsh7th/cmp-buffer" },
+				{ "hrsh7th/cmp-path" },
+				{ "saadparwaiz1/cmp_luasnip" },
+				{ "hrsh7th/cmp-nvim-lsp" },
+				{ "hrsh7th/cmp-nvim-lua" },
+				{ "hrsh7th/cmp-nvim-lsp-signature-help" },
+				{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
+				{ "L3MON4D3/LuaSnip" },
+				{ "rafamadriz/friendly-snippets" },
+			},
+		},
+		{ "nvimtools/none-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+		{ "zbirenbaum/copilot.lua" },
+		{
+			"zbirenbaum/copilot-cmp",
+			dependencies = { "copilot.lua" },
+			config = function()
+				require("copilot_cmp").setup()
+			end,
+		},
+		-- {
+		-- 	"olimorris/codecompanion.nvim",
+		-- 	config = function()
+		-- 		require("codecompanion").setup()
+		-- 	end,
+		-- 	dependencies = {
+		-- 		{ "nvim-lua/plenary.nvim" },
+		-- 		{ "nvim-treesitter/nvim-treesitter" },
+		-- 		-- Optional: Uncomment these to use them
+		-- 		-- "stevearc/dressing.nvim",
+		-- 		-- "nvim-telescope/telescope.nvim",
+		-- 	},
+		-- },
+
+		-- Debugging plugins
+		{
+			"rcarriga/nvim-dap-ui",
+			dependencies = {
+				{ "mfussenegger/nvim-dap" },
+				{ "nvim-neotest/nvim-nio" },
+				{ "leoluz/nvim-dap-go" },
+			},
+		},
+		{
+			"mxsdev/nvim-dap-vscode-js",
+			dependencies = { "mfussenegger/nvim-dap" },
+		},
+
+		-- Language-specific plugins
+		{
+			"ray-x/go.nvim",
+			dependencies = { "neovim/nvim-lspconfig", "nvim-treesitter/nvim-treesitter" },
+			build = ":GoUpdateBinaries",
+		},
+		{ "simrat39/rust-tools.nvim" },
+	},
+	{
+		checker = { enabled = true },
+	},
+})

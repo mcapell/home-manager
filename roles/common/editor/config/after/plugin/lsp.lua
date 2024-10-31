@@ -57,10 +57,10 @@ require("mason-lspconfig").setup({
 		"rust_analyzer",
 		"gopls",
 		-- "tsserver",
-		"pyright",
-		"terraformls",
-		"golangci_lint_ls",
-		"clojure_lsp",
+		-- "pyright",
+		-- "terraformls",
+		-- "golangci_lint_ls",
+		-- "clojure_lsp",
 	},
 	handlers = {
 		function(server_name)
@@ -91,6 +91,7 @@ if ok then
 			-- null_ls.builtins.formatting.rustfmt,
 			null_ls.builtins.formatting.prettier,
 			null_ls.builtins.diagnostics.vale,
+			null_ls.builtins.diagnostics.golangci_lint,
 		},
 		on_attach = function(client, bufnr)
 			-- Format on save
