@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+    home.username = "marc";
+    home.homeDirectory = "/Users/marc";
+
     imports = [
        ../common/terminal/index.nix 
        ../common/editor/index.nix 
