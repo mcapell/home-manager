@@ -21,13 +21,12 @@ export LC_ALL=C
 
 export EDITOR="nvim"
 export GOBIN="$HOME/.local/bin"
-export GOPRIVATE=github.com/docker,github.com/atomisthq,github.com/atomist-skills
 export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/opt/homebrew/bin:$GOBIN:$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$PATH"
 export TERM="screen-256color"
 
 export NVM_DIR="$HOME/.nvm"
 export CGO_ENABLED=0
-export SHELL="/Users/marc/.nix-profile/bin/fish"
+export SHELL="/home/marc/.nix-profile/bin/fish"
 
 # Enable direnv
 direnv hook fish | source
@@ -89,5 +88,7 @@ function zl
   command zellij --layout "$argv"
 end
 
+nvm use lts/jod
+
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/marc/.local/share/google-cloud-sdk/path.fish.inc' ]; . '/Users/marc/.local/share/google-cloud-sdk/path.fish.inc'; end
+# if [ -f '/Users/marc/.local/share/google-cloud-sdk/path.fish.inc' ]; . '/Users/marc/.local/share/google-cloud-sdk/path.fish.inc'; end

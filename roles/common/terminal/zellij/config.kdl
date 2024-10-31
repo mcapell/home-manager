@@ -1,6 +1,6 @@
 pane_frames false
 theme "nord"
-default_shell "/Users/marc/.nix-profile/bin/fish"
+default_shell "/home/marc/.nix-profile/bin/fish"
 
 // keybinds {
 keybinds clear-defaults=true {

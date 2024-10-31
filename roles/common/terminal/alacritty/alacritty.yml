@@ -30,7 +30,8 @@ shell:
   #   - -D
   #   - -s
   #   - default
-  program: /Users/marc/.nix-profile/bin/zellij
+  # program: /Users/marc/.nix-profile/bin/zellij
+  program: zellij
   args:
     - attach
     - -c
