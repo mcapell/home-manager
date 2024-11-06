@@ -109,6 +109,18 @@ require("lazy").setup({
 								},
 							})
 						end,
+						anthropic = function()
+							return require("codecompanion.adapters").extend("anthropic", {
+								schema = {
+									model = {
+										default = "claude-3-opus-20240229",
+									},
+								},
+								env = {
+									api_key = "ANTHROPIC_API_KEY",
+								},
+							})
+						end,
 					},
 				})
 			end,
