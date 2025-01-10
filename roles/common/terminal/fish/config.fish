@@ -1,7 +1,3 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
-
 # git prompt settings
 set -g __fish_git_prompt_show_informative_status 1
 set -g __fish_git_prompt_showdirtystate 'yes'
@@ -22,7 +18,8 @@ export LC_ALL=C
 export EDITOR="nvim"
 export GOBIN="$HOME/.local/bin"
 export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/opt/homebrew/bin:$GOBIN:$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$PATH"
-export TERM="screen-256color"
+# Disable TERM for ghostty compatibility
+# export TERM="screen-256color"
 
 export NVM_DIR="$HOME/.nvm"
 export CGO_ENABLED=0
@@ -87,6 +84,20 @@ end
 function zl
   command zellij --layout "$argv"
 end
+
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+    if [ "$TERM" = "xterm-ghostty" ]
+        # Launch zellij
+        # set ZELLIJ_AUTO_ATTACH true
+        # set ZELLIJ_AUTO_EXIT true
+        # eval (zellij setup --generate-auto-start fish | string collect)
+        if not set -q ZELLIJ
+            zellij attach -c default
+        end
+    end
+end
+
 
 nvm use lts/jod
 

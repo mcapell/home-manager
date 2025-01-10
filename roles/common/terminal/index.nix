@@ -3,11 +3,14 @@
 {
   # kitty and alacritty have issues with OpenGL when installed from home-manager
   home.packages = with pkgs; [
+    pkgs.unstable.fish
     # alacritty
+    # pkgs.unstable.ghostty
     zellij
     # kitty
     # nerdfonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    # (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    pkgs.unstable.nerd-fonts.jetbrains-mono
   ];
 
   fonts.fontconfig.enable = true;
