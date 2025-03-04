@@ -7,6 +7,8 @@
     home.packages = with pkgs; [
         libglvnd
         mesa
+
+        nicotine-plus # music download
     ];
 
     imports = [
