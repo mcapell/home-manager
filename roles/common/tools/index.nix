@@ -13,11 +13,12 @@
     jwt-cli
     fzf
 
-    # Containers
+    # Containers & cloud native tools
     skopeo
     crane
     # vexctl -- nixos version is very old, install from `go install github.com/openvex/vexctl@latest`
     sops
+    cloudflared
 
     # Documentation
     plantuml
