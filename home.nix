@@ -1,26 +1,29 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
-  isDarwin = pkgs.stdenv.isDarwin;
-  isLinux = pkgs.stdenv.isLinux;
+  system = builtins.currentSystem;
 
-  osEntryPoint = if isDarwin then
+  osEntryPoint = if system == "aarch64-darwin" then
     import ./roles/darwin/index.nix
-  else if isLinux then
+  else if system == "x86_64-linux" then
     import ./roles/linux/index.nix
   else
     {};
-
 in
 {
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    unstable = import <nixpkgs-unstable> { };
+  nixpkgs.config = {
+    allowUnfree = true;
+
+    packageOverrides = pkgs: {
+      unstable = import <nixpkgs-unstable> {
+         allowUnfree = true;
+      };
+    };
   };
 
   programs.home-manager.enable = true;
-
 
   imports = [
     osEntryPoint

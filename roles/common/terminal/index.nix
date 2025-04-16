@@ -19,19 +19,28 @@
   #   source = ./alacritty/alacritty.yml;
   # };
   #
-  programs.fish.enable = true;
-  xdg.configFile.fish = {
-    source = ./fish;
+  programs.fish = {
+    enable = true;
+    shellInit = builtins.readFile ./fish/config.fish.in;
+  };
+
+  home.file.".config/fish/functions" = {
+    source = ./fish/functions;
     recursive = true;
   };
-  #
+
   # xdg.configFile.kitty = {
   #   source = ./kitty;
   #   recursive = true;
   # };
 
-  xdg.configFile.zellij = {
-    source = ./zellij;
-    recursive = true;
+  # xdg.configFile.zellij = {
+  #   source = ./zellij;
+  #   recursive = true;
+  # };
+
+  home.file.".config/zellij/config.kdl".source = pkgs.substituteAll {
+    src = ./zellij/config.kdl.in;
+    fish = "${pkgs.fish}/bin/fish";
   };
 }

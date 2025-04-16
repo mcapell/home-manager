@@ -18,13 +18,13 @@
     crane
     # vexctl -- nixos version is very old, install from `go install github.com/openvex/vexctl@latest`
     sops
-    cloudflared
+    # cloudflared
 
     # Documentation
     plantuml
 
     # Cloud providers
-    awscli2
+    # awscli2
   ];
 
   home.file.".gitconfig" = {

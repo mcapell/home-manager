@@ -1,6 +1,6 @@
 pane_frames false
 theme "nord"
-default_shell "/home/marc/.nix-profile/bin/fish"
+default_shell "@fish@"
 
 // keybinds {
 keybinds clear-defaults=true {
@@ -65,3 +65,5 @@ plugins {
     compact-bar { path "compact-bar"; }
     session-manager { path "session-manager"; }
 }
+
+show_startup_tips false
