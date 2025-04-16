@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 let
-  isDarwin = builtins.currentSystem == "x86_64-darwin";
-  isLinux = builtins.currentSystem == "x86_64-linux";
+  isDarwin = pkgs.stdenv.isDarwin;
+  isLinux = pkgs.stdenv.isLinux;
 
   osEntryPoint = if isDarwin then
     import ./roles/darwin/index.nix
