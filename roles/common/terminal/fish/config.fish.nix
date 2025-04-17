@@ -1,3 +1,6 @@
+{ pkgs, ... }:
+
+''
 # git prompt settings
 set -g __fish_git_prompt_show_informative_status 1
 set -g __fish_git_prompt_showdirtystate 'yes'
@@ -21,7 +24,7 @@ export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/opt/homeb
 
 export NVM_DIR="$HOME/.nvm"
 export CGO_ENABLED=0
-export SHELL="${pkg.fish}/bin/fish"
+export SHELL="${pkgs.fish}/bin/fish"
 
 # Enable direnv
 direnv hook fish | source
@@ -69,3 +72,4 @@ if status is-interactive
         end
     end
 end
+''

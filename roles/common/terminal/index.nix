@@ -21,7 +21,9 @@
   #
   programs.fish = {
     enable = true;
-    shellInit = builtins.readFile ./fish/config.fish.in;
+    shellInit = import ./fish/config.fish.nix {
+      inherit pkgs;
+    };
   };
 
   home.file.".config/fish/functions" = {
