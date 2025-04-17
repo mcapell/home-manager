@@ -1,4 +1,4 @@
-{ config, pkgs, users, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -25,4 +25,10 @@
     src = ./zellij/config.kdl.in;
     fish = "${pkgs.fish}/bin/fish";
   };
+
+  home.file.".config/ghostty/config".text = ''
+    font-family = "JetBrainsMono Nerd Font"
+    font-size = 14
+    command = "${pkgs.fish}/bin/fish"
+  '';
 }
