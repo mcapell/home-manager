@@ -19,6 +19,7 @@
     # vexctl -- nixos version is very old, install from `go install github.com/openvex/vexctl@latest`
     sops
     # cloudflared
+    minikube
 
     # Documentation
     plantuml
