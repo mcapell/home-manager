@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     # General
+    git  # git usually already exists, but defining it here will make it available in nix-shells
     jq
     yq-go
     gh
