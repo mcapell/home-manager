@@ -87,6 +87,7 @@ if ok then
 			null_ls.builtins.formatting.stylua,
 			null_ls.builtins.formatting.terraform_fmt,
 			null_ls.builtins.formatting.goimports,
+			null_ls.builtins.formatting.gofmt,
 			-- null_ls.builtins.formatting.buf, -- profobuf, does not work (see: https://github.com/bufbuild/buf/issues/1035)
 			-- null_ls.builtins.formatting.rustfmt,
 			null_ls.builtins.formatting.prettier,
@@ -106,6 +107,7 @@ if ok then
 							filter = function(client)
 								return client.name == "null-ls"
 							end,
+							timeout_ms = 2000,
 						})
 					end,
 				})
