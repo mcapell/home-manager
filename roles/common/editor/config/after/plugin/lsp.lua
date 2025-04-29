@@ -108,6 +108,7 @@ if ok then
 								return client.name == "null-ls"
 							end,
 							timeout_ms = 2000,
+							async = false,
 						})
 					end,
 				})
