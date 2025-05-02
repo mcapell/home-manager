@@ -11,6 +11,7 @@
 
   programs.fish = {
     enable = true;
+    package = pkgs.unstable.fish;
     shellInit = import ./fish/config.fish.nix {
       inherit pkgs;
     };
