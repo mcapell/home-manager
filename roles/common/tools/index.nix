@@ -21,6 +21,7 @@
     sops
     # cloudflared
     minikube
+    pkgs.unstable.tilt  # stable failed to built on macOS (due to some issue building node v20.19)
 
     # Documentation
     plantuml
