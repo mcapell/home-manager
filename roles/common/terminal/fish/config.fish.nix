@@ -20,7 +20,7 @@ export LC_ALL=C
 
 export EDITOR="nvim"
 export GOBIN="$HOME/.local/bin"
-export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/opt/homebrew/bin:$GOBIN:$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.node/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/opt/homebrew/bin:$GOBIN:$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 export CGO_ENABLED=0
