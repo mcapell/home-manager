@@ -35,6 +35,17 @@ keybinds clear-defaults=true {
             SwitchToMode "Normal"
         }
     }
+    scroll {
+        bind "Ctrl q" { SwitchToMode "Normal"; }
+        bind "e" { EditScrollback; SwitchToMode "Normal"; }
+        bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "j" "Down" { ScrollDown; }
+        bind "k" "Up" { ScrollUp; }
+        bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
+        bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
+        bind "d" { HalfPageScrollDown; }
+        bind "u" { HalfPageScrollUp; }
+    }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
         bind "Alt n" { NewPane; }
@@ -55,6 +66,9 @@ keybinds clear-defaults=true {
     }
     shared_except "session" "locked" {
         bind "Ctrl s" { SwitchToMode "Session"; }
+    }
+    shared_except "scroll" "locked" {
+        bind "Ctrl q" { SwitchToMode "Scroll"; }
     }
 }
 
