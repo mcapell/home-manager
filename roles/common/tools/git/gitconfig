@@ -22,7 +22,7 @@
     files  = "!git diff --name-status \"$1\"^ \"$1\" #"
 
     # gh extensions
-    lr    = "!f() { gh pr list | fzf | cut -w -f1 | xargs -n1 gh pr checkout; }; f"
+    lr    = "!f() { gh pr list --limit=1000 | fzf | cut -w -f1 | xargs -n1 gh pr checkout; }; f"
 
 [init]
     defaultBranch = main
