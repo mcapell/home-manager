@@ -40,6 +40,14 @@ alias ping='ping -c 5'
 alias rm='rm -i'
 alias wl="vim ~/.worklog"
 
+function _prompt_is_git_fork
+    # Check if we are inside a Git repository's work tree
+    if git rev-parse --is-inside-work-tree > /dev/null 2>&1
+        git remote -v | grep -q 'upstream' && return 0
+    end
+    return 1
+end
+
 function fish_prompt
     set -l last_pipestatus $pipestatus
     set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
@@ -53,6 +61,12 @@ function fish_prompt
         echo -n (prompt_pwd)
     end
     set_color normal
+
+    # Check if the current directory is a git fork
+    if _prompt_is_git_fork
+      printf ' '
+    end
+
     printf '%s ' (__fish_git_prompt)
     echo -n (__fish_print_pipestatus "[" "]" "|" "$status_color" "$statusb_color" $last_pipestatus)
     set_color normal
