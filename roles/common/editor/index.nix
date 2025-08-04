@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    neovim
+    pkgs.unstable.neovim
 
     stylua
   ];
