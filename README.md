@@ -20,3 +20,18 @@
    ```bash
    NIXPKGS_ALLOW_UNFREE="1" home-manager switch
    ```
+
+## One-time configurations
+
+There are some configurations that are device-specific and can't be checked on this repository.
+
+### Local git configuration
+
+Create a `~/.gitconfig.local` file, with the following content:
+
+    ```gitconfig
+    [user]
+        name = Marc
+        email = marc@example.com
+        signingkey = <key id>
+    ```
