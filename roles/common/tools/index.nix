@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 
+let
+  llm-with-plugins = pkgs.unstable.llm.withPlugins {
+    llm-gemini = true;
+  };
+in
 {
   home.packages = with pkgs; [
     # General
@@ -29,6 +34,9 @@
 
     # Cloud providers
     # awscli2
+
+    # LLMs
+    llm-with-plugins
   ];
 
   home.file.".gitconfig" = {
@@ -36,4 +44,3 @@
   };
 
 }
-

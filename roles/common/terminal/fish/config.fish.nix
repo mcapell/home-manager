@@ -40,6 +40,9 @@ alias ping='ping -c 5'
 alias rm='rm -i'
 alias wl="vim ~/.worklog"
 
+# LLM aliases
+alias llmf='llm -m gemini-2.5-flash'
+
 function _prompt_is_git_fork
     # Check if we are inside a Git repository's work tree
     if git rev-parse --is-inside-work-tree > /dev/null 2>&1
