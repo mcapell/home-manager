@@ -28,12 +28,14 @@ in
     minikube
     pkgs.unstable.tilt  # stable failed to built on macOS (due to some issue building node v20.19)
     kubernetes-helm
+    ko # build containers for Go apps
 
     # Documentation
     plantuml
 
     # Cloud providers
     # awscli2
+    terraform
 
     # LLMs
     llm-with-plugins
