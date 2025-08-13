@@ -8,6 +8,7 @@
 
     # Tools
     pkgs.unstable.go-task
+    pkgs.unstable.mage
   ];
 }
 
