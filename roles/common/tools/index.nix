@@ -18,6 +18,7 @@ in
     ripgrep
     jwt-cli
     fzf
+    pet  # snippet manager
 
     # Containers & cloud native tools
     skopeo
