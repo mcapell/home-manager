@@ -19,6 +19,7 @@ in
     jwt-cli
     fzf
     pet  # snippet manager
+    pass
 
     # Containers & cloud native tools
     skopeo
