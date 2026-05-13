@@ -29,24 +29,21 @@ require("lazy").setup({
 		{ "kyazdani42/nvim-tree.lua", dependencies = { "kyazdani42/nvim-web-devicons" } },
 		{
 			"nvim-treesitter/nvim-treesitter",
+			branch = "main",
+			lazy = false,
 			build = ":TSUpdate",
 			config = function()
 				-- use a custom path as the nix-created one is read-only
-				local parser_install_dir = vim.fn.stdpath("data") .. "/treesitter"
-				vim.opt.runtimepath:append(parser_install_dir)
-
-				require("nvim-treesitter.configs").setup({
-					parser_install_dir = parser_install_dir,
-					ensure_installed = { "go", "gomod", "python", "rust", "yaml", "hcl", "lua", "clojure" },
-					sync_install = false,
-					auto_install = true,
-					highlight = {
-						enable = true,
-						additional_vim_regex_highlighting = false,
-					},
-					-- indent = {
-					--     enable = true
-					-- },
+				-- setup() prepends install_dir to runtimepath automatically
+				require("nvim-treesitter").setup({
+					install_dir = vim.fn.stdpath("data") .. "/treesitter",
+				})
+				-- new treesitter main branch dropped the configs/highlight module;
+				-- neovim's built-in treesitter must be started per filetype
+				vim.api.nvim_create_autocmd("FileType", {
+					callback = function(args)
+						pcall(vim.treesitter.start, args.buf)
+					end,
 				})
 			end,
 		},
@@ -90,14 +87,6 @@ require("lazy").setup({
 			},
 		},
 		{ "nvimtools/none-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-		{ "zbirenbaum/copilot.lua" },
-		{
-			"zbirenbaum/copilot-cmp",
-			dependencies = { "copilot.lua" },
-			config = function()
-				require("copilot_cmp").setup()
-			end,
-		},
 		{
 			"olimorris/codecompanion.nvim",
 			config = function()
@@ -162,7 +151,6 @@ require("lazy").setup({
 			dependencies = { "neovim/nvim-lspconfig", "nvim-treesitter/nvim-treesitter" },
 			build = ":GoUpdateBinaries",
 		},
-		{ "simrat39/rust-tools.nvim" },
 	},
 	{
 		checker = { enabled = true },

@@ -5,6 +5,7 @@
     pkgs.unstable.neovim
 
     stylua
+    tree-sitter  # required for neovim
   ];
 
   xdg.configFile.nvim = {
