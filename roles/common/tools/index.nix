@@ -41,6 +41,7 @@ in
 
     # LLMs
     llm-with-plugins
+    pkgs.unstable.sandbox-runtime
   ];
 
   home.file.".gitconfig" = {
