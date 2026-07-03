@@ -12,6 +12,9 @@
   programs.fish = {
     enable = true;
     package = pkgs.unstable.fish;
+    # fish >=4.0 (Rust rewrite) dropped share/fish/tools/create_manpage_completions.py,
+    # which home-manager's fish module still relies on for this feature.
+    generateCompletions = false;
     shellInit = import ./fish/config.fish.nix {
       inherit pkgs;
     };
