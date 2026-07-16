@@ -3,6 +3,10 @@ theme "nord"
 default_shell "@fish@"
 scroll_buffer_size 500000
 
+load_plugins {
+    "file:~/.config/zellij/plugins/zellij-workhole.wasm"
+}
+
 // keybinds {
 keybinds clear-defaults=true {
     locked {
@@ -59,9 +63,16 @@ keybinds clear-defaults=true {
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt a" {
-          LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij-operator.wasm" {
-              floating true
-              move_to_focused_tab true
+            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij-operator.wasm" {
+                floating true
+                move_to_focused_tab true
+            }
+        }
+        // Alt w: read the clipboard (macOS/Wayland/X11) and pipe it into
+        // zellij-workhole. Highlight text first (shift+drag copies on select).
+        bind "Alt p" {
+            MessagePlugin "file:~/.config/zellij/plugins/zellij-workhole.wasm" {
+                name "toggle"
             }
         }
     }
