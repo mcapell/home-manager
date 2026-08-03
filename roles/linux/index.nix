@@ -15,7 +15,9 @@
        ../common/tools/index.nix
        ../common/terminal/index.nix
        ../common/editor/index.nix
+
        ../common/golang/index.nix
+       ../common/typescript/index.nix 
     ];
 }
 
