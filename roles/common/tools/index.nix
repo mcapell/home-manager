@@ -39,6 +39,9 @@ in
     # awscli2
     terraform
 
+    # Network
+    tshark
+
     # LLMs
     llm-with-plugins
     pkgs.unstable.sandbox-runtime
