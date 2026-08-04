@@ -66,6 +66,7 @@ keybinds clear-defaults=true {
             LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij-operator.wasm" {
                 floating true
                 move_to_focused_tab true
+                discovery_root "~/Development"
             }
         }
         // Alt w: read the clipboard (macOS/Wayland/X11) and pipe it into
