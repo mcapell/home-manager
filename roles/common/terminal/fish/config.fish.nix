@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, fish, ... }:
 
 ''
 # git prompt settings
@@ -24,7 +24,7 @@ export PATH="$HOME/.node/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/defaul
 
 export NVM_DIR="$HOME/.nvm"
 export CGO_ENABLED=0
-export SHELL="${pkgs.fish}/bin/fish"
+export SHELL="${fish}/bin/fish"
 
 # Enable direnv
 direnv hook fish | source
