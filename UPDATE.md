@@ -22,13 +22,13 @@ without changing the major release.
 nix-channel --update
 
 # 2. Rebuild and activate your environment against the updated channels
-NIXPKGS_ALLOW_UNFREE=1 home-manager switch
+home-manager switch
 ```
 
 Shorthand:
 
 ```bash
-nix-channel --update && NIXPKGS_ALLOW_UNFREE=1 home-manager switch
+nix-channel --update && home-manager switch
 ```
 
 ## How to jump to a newer major release
@@ -48,7 +48,7 @@ nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
 nix-channel --update
 
 # 3. Rebuild and activate
-NIXPKGS_ALLOW_UNFREE=1 home-manager switch
+home-manager switch
 ```
 
 After switching to a new major release, also update:

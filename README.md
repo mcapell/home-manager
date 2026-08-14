@@ -16,10 +16,21 @@
    nix-shell '<home-manager>' -A install
    ```
 
-3. Download this repository, and run home manager:
+3. Download this repository, and run Home Manager:
+
+   On Linux, the first activation also needs the channel search path:
    ```bash
-   NIXPKGS_ALLOW_UNFREE="1" home-manager switch
+   NIX_PATH="$HOME/.nix-defexpr/channels" home-manager switch
    ```
+
+   On macOS, run:
+   ```bash
+   home-manager switch
+   ```
+
+   After the first Linux activation, Home Manager manages the Nix search path,
+   so `NIX_PATH` is no longer needed. See [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+   for details.
 
 ## One-time configurations
 

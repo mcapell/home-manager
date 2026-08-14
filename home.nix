@@ -18,7 +18,7 @@ in
 
     packageOverrides = pkgs: {
       unstable = import <nixpkgs-unstable> {
-         allowUnfree = true;
+        config.allowUnfree = true;
       };
     };
   };
