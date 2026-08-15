@@ -12,6 +12,7 @@
     home.packages = with pkgs; [
         libglvnd
         mesa
+        gnumake
 
         nicotine-plus # music download
     ];
