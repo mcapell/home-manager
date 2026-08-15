@@ -10,6 +10,7 @@
       "nixpkgs=${config.home.homeDirectory}/.nix-defexpr/channels/nixpkgs";
 
     home.packages = with pkgs; [
+        gcc
         libglvnd
         mesa
         gnumake
