@@ -25,7 +25,8 @@
 
        ../common/golang/index.nix
        ../common/rust/index.nix
-       ../common/typescript/index.nix 
+       ../common/typescript/index.nix
+       ../common/docker/index.nix
     ];
 }
 
