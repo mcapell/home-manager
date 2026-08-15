@@ -24,6 +24,7 @@
        ../common/productivity/index.nix
 
        ../common/golang/index.nix
+       ../common/rust/index.nix
        ../common/typescript/index.nix 
     ];
 }
