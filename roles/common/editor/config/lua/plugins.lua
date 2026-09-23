@@ -1,6 +1,6 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 	if vim.v.shell_error ~= 0 then
@@ -26,7 +26,7 @@ require("lazy").setup({
 		{ "tpope/vim-surround" },
 		{ "vim-scripts/BufOnly.vim" },
 		{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-		{ "kyazdani42/nvim-tree.lua", dependencies = { "kyazdani42/nvim-web-devicons" } },
+		{ "nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
 		{
 			"nvim-treesitter/nvim-treesitter",
 			branch = "main",
@@ -87,49 +87,6 @@ require("lazy").setup({
 			},
 		},
 		{ "nvimtools/none-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-		{
-			"olimorris/codecompanion.nvim",
-			config = function()
-				require("codecompanion").setup({
-					strategies = {
-						chat = {
-							adapter = "openai",
-						},
-						inline = {
-							adapter = "openai",
-						},
-					},
-					adapters = {
-						openai = function()
-							return require("codecompanion.adapters").extend("openai", {
-								env = {
-									api_key = "OPENAI_API_KEY",
-								},
-							})
-						end,
-						anthropic = function()
-							return require("codecompanion.adapters").extend("anthropic", {
-								schema = {
-									model = {
-										default = "claude-3-opus-20240229",
-									},
-								},
-								env = {
-									api_key = "ANTHROPIC_API_KEY",
-								},
-							})
-						end,
-					},
-				})
-			end,
-			dependencies = {
-				{ "nvim-lua/plenary.nvim" },
-				{ "nvim-treesitter/nvim-treesitter" },
-				-- Optional: Uncomment these to use them
-				-- "stevearc/dressing.nvim",
-				-- "nvim-telescope/telescope.nvim",
-			},
-		},
 
 		-- Debugging plugins
 		{
@@ -140,16 +97,10 @@ require("lazy").setup({
 				{ "leoluz/nvim-dap-go" },
 			},
 		},
-		{
-			"mxsdev/nvim-dap-vscode-js",
-			dependencies = { "mfussenegger/nvim-dap" },
-		},
-
 		-- Language-specific plugins
 		{
 			"ray-x/go.nvim",
 			dependencies = { "neovim/nvim-lspconfig", "nvim-treesitter/nvim-treesitter" },
-			build = ":GoUpdateBinaries",
 		},
 	},
 	{

@@ -13,12 +13,8 @@ lsp_zero.on_attach(function(_, bufnr)
 	vim.keymap.set({ "n", "v" }, "<leader>rr", function()
 		vim.lsp.buf.rename()
 	end, opts)
-	vim.keymap.set("n", "<leader>p", function()
-		vim.diagnostic.goto_prev()
-	end, opts)
-	vim.keymap.set("n", "<leader>n", function()
-		vim.diagnostic.goto_next()
-	end, opts)
+	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 	vim.keymap.set({ "n", "v" }, "<leader>ca", function()
 		vim.lsp.buf.code_action()
 	end, opts)
@@ -46,8 +42,8 @@ lsp_zero.set_sign_icons({
 require("lsp_lines").setup({})
 vim.diagnostic.config({
 	virtual_text = false,
+	virtual_lines = { prefix = "" },
 })
-vim.diagnostic.config({ virtual_lines = { prefix = "" } })
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
@@ -87,16 +83,13 @@ if ok then
 			null_ls.builtins.formatting.stylua,
 			null_ls.builtins.formatting.terraform_fmt,
 			null_ls.builtins.formatting.goimports,
-			null_ls.builtins.formatting.gofmt,
 			-- null_ls.builtins.formatting.buf, -- profobuf, does not work (see: https://github.com/bufbuild/buf/issues/1035)
 			-- null_ls.builtins.formatting.rustfmt,
-			null_ls.builtins.formatting.prettier,
-			null_ls.builtins.diagnostics.vale,
 			null_ls.builtins.diagnostics.golangci_lint,
 		},
 		on_attach = function(client, bufnr)
 			-- Format on save
-			if client.supports_method("textDocument/formatting") then
+			if client:supports_method("textDocument/formatting", { bufnr = bufnr }) then
 				vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 				vim.api.nvim_create_autocmd("BufWritePre", {
 					group = augroup,
