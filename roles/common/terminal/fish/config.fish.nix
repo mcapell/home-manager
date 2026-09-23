@@ -46,8 +46,9 @@ set -g __fish_git_prompt_color_cleanstate green --bold
 set -g __fish_git_prompt_color_invalidstate red
 set -g __fish_git_prompt_color_branch cyan --dim --italics
 
-# Set standard language and localization
-export LC_ALL=C
+# Use the deterministic POSIX locale, but retain UTF-8 character handling.
+# tmux disables UTF-8 for clients attached with plain LC_ALL=C.
+export LC_ALL=C.UTF-8
 
 export EDITOR="nvim"
 export GOBIN="$HOME/.local/bin"
