@@ -113,11 +113,10 @@ function fish_greeting
 end
 
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    # Attach to the default tmux session (or create it) in Ghostty.
     if [ "$TERM" = "xterm-ghostty" ]
-        # Launch zellij
-        if not set -q ZELLIJ
-            zellij attach -c default
+        if not set -q TMUX; and not set -q ZELLIJ
+            tmux new-session -A -s default
         end
     end
 end

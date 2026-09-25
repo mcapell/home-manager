@@ -6,7 +6,7 @@ in
 {
   home.packages = with pkgs; [
     fish
-    tmux
+    pkgs.unstable.tmux
     zellij
     pkgs.unstable.nerd-fonts.jetbrains-mono
   ];
