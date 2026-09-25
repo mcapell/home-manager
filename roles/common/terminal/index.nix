@@ -6,6 +6,7 @@ in
 {
   home.packages = with pkgs; [
     fish
+    tmux
     zellij
     pkgs.unstable.nerd-fonts.jetbrains-mono
   ];
@@ -22,6 +23,8 @@ in
       inherit pkgs fish;
     };
   };
+
+  home.file.".tmux.conf".source = ./tmux/tmux.conf;
 
   home.file.".config/fish/functions" = {
     source = ./fish/functions;
