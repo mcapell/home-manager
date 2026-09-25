@@ -62,6 +62,14 @@ keybinds clear-defaults=true {
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
+
+        // Direct Pane Moving / Swapping
+        bind "Alt Shift h" "Alt Shift Left" { MovePane "Left"; }
+        bind "Alt Shift l" "Alt Shift Right" { MovePane "Right"; }
+        bind "Alt Shift j" "Alt Shift Down" { MovePane "Down"; }
+        bind "Alt Shift k" "Alt Shift Up" { MovePane "Up"; }
+
+        // Alt a: zellij-operator
         bind "Alt a" {
             LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij-operator.wasm" {
                 floating true
