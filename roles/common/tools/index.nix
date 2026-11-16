@@ -45,6 +45,7 @@ in
 
     # LLMs
     llm-with-plugins
+    pkgs.unstable.nono
     pkgs.unstable.sandbox-runtime
   ];
 
