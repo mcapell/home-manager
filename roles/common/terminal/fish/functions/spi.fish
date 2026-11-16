@@ -1,5 +1,8 @@
-function spi --wraps='nono run --profile pi -- pi' --description 'alias spi=nono run --profile pi -- pi'
-  # nono's proxy makes Node emit a benign UNDICI-EHPA warning before pi starts.
-  # Set NODE_OPTIONS inside the sandbox because nono does not pass it through from the shell.
-  nono run --profile pi --trust-proxy-ca -- env NODE_OPTIONS=--disable-warning=UNDICI-EHPA pi $argv
+function spi --description 'Run pi in nono with Herdr agent discovery'
+  # Keep a host-side process carrying HERDR_AGENT in the foreground process group.
+  # The explicit exit prevents sh from replacing itself with nono as its final command.
+  env HERDR_AGENT=pi sh -c '
+    nono run --profile pi --trust-proxy-ca --proxy-ca-validity 7 -- env NODE_OPTIONS=--disable-warning=UNDICI-EHPA pi "$@"
+    exit $?
+  ' sh $argv
 end
