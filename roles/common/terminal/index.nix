@@ -25,6 +25,7 @@ in
   };
 
   home.file.".tmux.conf".source = ./tmux/tmux.conf;
+  home.file.".config/herdr/config.toml".source = ./herdr/config.toml;
 
   home.file.".config/fish/functions" = {
     source = ./fish/functions;
